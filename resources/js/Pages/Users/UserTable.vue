@@ -2,21 +2,21 @@
 <template>
   <div class="flex flex-col">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
           <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
               <tr>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                   Name
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                   Title
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                   Status
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                   Role
                 </th>
                 <th scope="col" class="relative px-6 py-3">
@@ -28,8 +28,8 @@
               <tr v-for="person in users" :key="person.email">
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
-                    <div class="flex-shrink-0 h-10 w-10">
-                      <img class="h-10 w-10 rounded-full" :src="person.image" alt="" />
+                    <div class="flex-shrink-0 w-10 h-10">
+                      <img class="w-10 h-10 rounded-full" :src="person.image" alt="" />
                     </div>
                     <div class="ml-4">
                       <div class="text-sm font-medium text-gray-900">
@@ -42,22 +42,21 @@
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900">{{ person.titel_id }}</div>
-                  <div class="text-sm text-gray-500">{{ person.department }}</div>
+                  <div class="text-sm text-gray-900">{{ person.titel.titel }}</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                  <span v-if="person.active" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                  <span v-if="person.active" class="inline-flex px-2 text-xs font-semibold text-green-800 bg-green-100 rounded-full leading-5">
                     Active
                   </span>
-                  <span v-else class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                  <span v-else class="inline-flex px-2 text-xs font-semibold text-red-800 bg-red-100 rounded-full leading-5">
                     Inactive
                   </span>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {{ person.role_id }}
+                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                  {{ person.role.role }}
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <Link :href="route('users.show', person.id)" class="text-indigo-600 hover:text-indigo-900 mr-4">Show</Link>
+                <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                  <Link :href="route('users.show', person.id)" class="mr-4 text-indigo-600 hover:text-indigo-900">Show</Link>
                   <Link :href="route('users.edit', person.id)" class="text-indigo-600 hover:text-indigo-900">Edit</Link>
                 </td>
               </tr>

@@ -42,8 +42,7 @@
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900">{{ person.titel_id }}</div>
-                  <div class="text-sm text-gray-500">{{ person.department }}</div>
+                  <div class="text-sm text-gray-900">{{ person.titel_ida }}</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <span v-if="person.active" class="inline-flex px-2 text-xs font-semibold text-green-800 bg-green-100 rounded-full leading-5">

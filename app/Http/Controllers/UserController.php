@@ -52,7 +52,7 @@ class UserController extends Controller
 		
     public function index()
     {
-		$users = User::when(request('term'), function ($query, $term) {
+		$users = User::with('titel', 'role')->when(request('term'), function ($query, $term) {
 			$query->where('name', 'like', "%$term%");
 		})->paginate(15);
         return inertia('Users/Index', compact('users'));

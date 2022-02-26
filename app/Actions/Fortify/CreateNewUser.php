@@ -40,13 +40,13 @@ class CreateNewUser implements CreatesNewUsers
                 'password' => $this->passwordRules(),
                 'terms'    => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
             ])->validate();
-
             $tenant = Tenant::create([
                 'tenant'     => $input['tenant'],
                 'owner_name' => $input['name']
             ]);
-            $titel = Titel::where('tenant_id', $tenant->id)->where('titel', 'Tidak ada titel')->first();
-            $role  = Role::where('tenant_id', $tenant->id)->where('role', 'owner')->first();
+
+            $titel = Titel::where('titel', 'Tidak ada titel')->first();
+            $role  = Role::where('role', 'owner')->first();
             DB::commit();
             return User::create([
                 'name'      => $input['name'],
