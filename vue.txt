@@ -1,0 +1,3 @@
+mkdir resources/js/Pages/Asuransis && cp resources/js/Pages/Mereks/* resources/js/Pages/Asuransis/. 
+mkdir resources/js/Pages/Coas && cp resources/js/Pages/Mereks/* resources/js/Pages/Coas/. 
+mkdir resources/js/Pages/JenisTarifs && cp resources/js/Pages/Mereks/* resources/js/Pages/JenisTarifs/. 

@@ -1,0 +1,27 @@
+models:
+  Pasien:
+    nama: string
+    nama_peserta: nullable string
+    nomor_asuransi: nullable string 
+    asuransi_id: unsignedBigInteger
+    jenis_peserta: integer
+    sex: tinyInteger
+    alamat: longtext
+    tanggal_lahir: nullable date
+    nama_ayah: nullable string
+    nama_ibu: nullable string
+    image: nullable string
+    ktp_image: nullable string
+    bpjs_image: nullable string
+    nomor_asuransi_bpjs: nullable string
+    nomor_ktp: nullable string
+    jangan_disms: tinyInteger
+    sudah_kontak_bulan_ini: tinyInteger
+    prolanis_ht: tinyInteger
+    prolanis_dm: tinyInteger
+    prolanis_ht_flagging_image: nullable string
+    prolanis_dm_flagging_image: nullable string
+    kartu_asuransi_image: nullable string
+controllers:
+  Pasien:
+    resource

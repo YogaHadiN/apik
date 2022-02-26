@@ -1,0 +1,44 @@
+created:
+    - app/Http/Controllers/PasienController.php
+    - database/factories/PasienFactory.php
+    - database/migrations/2022_02_12_020829_create_pasiens_table.php
+    - app/Models/Pasien.php
+    - tests/Feature/Http/Controllers/PasienControllerTest.php
+    - app/Http/Requests/PasienStoreRequest.php
+    - app/Http/Requests/PasienUpdateRequest.php
+    - resources/views/pasien/index.blade.php
+    - resources/views/pasien/create.blade.php
+    - resources/views/pasien/show.blade.php
+    - resources/views/pasien/edit.blade.php
+updated:
+    - routes/web.php
+models:
+    Asset: { type: string, filename: string, extension: string, size: string, assetable_type: string, user_id: 'biginteger unsigned', tenant_id: 'biginteger unsigned', assetable_id: 'biginteger unsigned' }
+    Asuransi: { nama: string, alamat: 'text nullable', tanggal_berakhir: 'date nullable', alamat_penagihan: 'text nullable', catatan_pelayanan_gigi: 'text nullable', tipe_asuransi_id: 'biginteger unsigned', kali_obat: 'float:8,1', coa_id: 'biginteger unsigned', kata_kunci: 'string nullable', aktif: boolean, pelunasan_transfer: boolean, tenant_id: 'biginteger unsigned' }
+    AturanMinum: { aturan_minum: string, tenant_id: 'biginteger unsigned' }
+    BahanHabisPakai: { merek_id: 'biginteger unsigned', jumlah: integer, jenis_tarif_id: 'biginteger unsigned', tenant_id: 'biginteger unsigned' }
+    Coa: { kelompok_coa_id: 'biginteger unsigned', coa: string, kode_coa: string, saldo_awal: integer, tenant_id: 'biginteger unsigned' }
+    Email: { email: string, emailable_id: string, emailable_type: string }
+    Formula: { indikasi: 'text nullable', kontraindikasi: 'text nullable', efek_samping: 'text nullable', dijual_bebas: 'boolean default:1', fornas: boolean, sediaan_id: 'biginteger unsigned', aturan_minum_id: 'string nullable', peringatan: 'text nullable', komposisi_json: text, boleh_dipuyer: 'boolean default:1', tenant_id: 'biginteger unsigned' }
+    Generik: { generik: string, pregnancy_safety_index: 'string nullable', peroral: 'string nullable', parenteral: 'string nullable', topical: 'string nullable', opthalmic: 'string nullable', vaginal: 'string nullable', inhalation: 'string nullable', lingual: 'string nullable', transdermal: 'string nullable', nasal: 'string nullable' }
+    GolonganObat: {  }
+    HomeController: {  }
+    JenisTarif: { jenis_tarif: string, coa_id: 'biginteger unsigned', tenant_id: 'biginteger unsigned' }
+    KelasObat: { kelas_obat: string }
+    KelompokCoa: { kelompok_coa: string }
+    Komposisi: { generik_id: integer, bobot: string, satuan_id: 'biginteger unsigned', formula_id: 'biginteger unsigned', tenant_id: 'biginteger unsigned' }
+    Login: { tenant_id: 'biginteger unsigned', user_id: 'biginteger unsigned' }
+    Merek: { merek: string, exp_date: 'date nullable', rak_id: integer, unit_tiap_paket: 'integer nullable', tenant_id: 'biginteger unsigned' }
+    Phone: { number: string, phoneable_id: string, phoneable_type: string, description: 'string nullable', utama: 'boolean default:0' }
+    Rak: { nomor_rak: string, harga_beli: 'integer default:0', harga_jual: 'integer default:0', stok_minimal: 'integer default:0', stok: 'integer default:0', formula_id: 'biginteger unsigned', kelas_obat_id: 'biginteger unsigned', tenant_id: 'biginteger unsigned' }
+    Role: { role: string, tenant_id: 'biginteger unsigned' }
+    Satuan: { satuan: string }
+    Sediaan: { sediaan: string }
+    Signa: { signa: string, tenant_id: 'biginteger unsigned' }
+    Tarif: { jenis_tarif_id: 'biginteger unsigned', biaya: integer, asuransi_id: 'biginteger unsigned', fee_dokter: integer, fee_asisten_tindakan: integer, tipe_tindakan_id: 'biginteger unsigned', tenant_id: 'biginteger unsigned' }
+    Tenant: { tenant: string, owner_name: string, alamat: 'string nullable', no_telp: 'string nullable' }
+    TipeAsuransi: { tipe_asuransi: string, tenant_id: 'biginteger unsigned' }
+    TipeTindakan: { tipe_tindakan: string, keterangan: string, tenant_id: 'biginteger unsigned' }
+    Titel: { titel: string, tenant_id: 'biginteger unsigned' }
+    User: { name: string, email: string, password: string, two_factor_secret: 'text nullable', two_factor_recovery_codes: 'text nullable', titel_id: 'biginteger unsigned', email_verified_at: 'datetime nullable', alamat_domisili: 'text nullable', alamat_ktp: 'text nullable', no_ktp: 'string nullable', no_str: 'string nullable', no_hp: 'string nullable', universitas_asal: 'string nullable', tanggal_lulus: 'date nullable', tanggal_lahir: 'date nullable', tanggal_mulai: 'date nullable', photo: 'string nullable', photo_mime_type: 'string nullable', ktp_image: 'string nullable', ktp_image_mime_type: 'string nullable', str_image: 'string nullable', str_image_mime_type: 'string nullable', npwp_image: 'string nullable', npwp_image_mime_type: 'string nullable', sip_image: 'string nullable', sip_image_mime_type: 'string nullable', kartu_keluarga_image: 'string nullable', kartu_keluarga_image_mime_type: 'string nullable', menikah: 'boolean default:0', npwp: 'string nullable', jumlah_anak: 'integer default:0', jenis_kelamin: 'boolean default:0', nomor_rekening: 'string nullable', bank: 'string nullable', gaji_tetap: 'integer default:0', role_id: 'biginteger unsigned', tenant_id: 'biginteger unsigned', active: 'boolean default:1', remember_token: 'string:100 nullable' }
+    Pasien: { nama: string, nama_peserta: 'nullable string', nomor_asuransi: 'nullable string', asuransi_id: unsignedBigInteger, jenis_peserta: integer, sex: tinyInteger, alamat: longtext, tanggal_lahir: 'nullable date', nama_ayah: 'nullable string', nama_ibu: 'nullable string', image: 'nullable string', ktp_image: 'nullable string', bpjs_image: 'nullable string', nomor_asuransi_bpjs: 'nullable string', nomor_ktp: 'nullable string', jangan_disms: tinyInteger, sudah_kontak_bulan_ini: tinyInteger, prolanis_ht: tinyInteger, prolanis_dm: tinyInteger, prolanis_ht_flagging_image: 'nullable string', prolanis_dm_flagging_image: 'nullable string', kartu_asuransi_image: 'nullable string' }
