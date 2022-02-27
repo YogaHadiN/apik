@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Http\Traits\BelongsToTenant;
+
 class TipeTindakan extends Model
 {
-    use HasFactory, BelongsToTenant;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
