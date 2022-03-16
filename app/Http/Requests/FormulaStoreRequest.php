@@ -26,7 +26,6 @@ class FormulaStoreRequest extends FormRequest
     public function rules()
     {
 	  return [
-
 		  'nomor_rak'                  => [ 
 			  'required',
 			  'string',

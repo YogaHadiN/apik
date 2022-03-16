@@ -132,11 +132,12 @@ class FormulaController extends Controller
 		$mereks     = $formula->merek;
 		foreach ($formula->komposisi as $k) {
 		  $komposisis[] = [
-			'generik_id' => $k->generik_id,
-			'generik'    => $k->generik->generik,
-			'bobot'      => $k->bobot,
-			'satuan_id'  => $k->satuan_id,
-			'satuan'     => $k->satuan->satuan,
+			'generik_id'    => $k->generik_id,
+			'generik'       => $k->generik->generik,
+			'generik_model' => $k->generik->generik,
+			'bobot'         => $k->bobot,
+			'satuan_id'     => $k->satuan_id,
+			'satuan'        => $k->satuan->satuan,
 		  ];
 		}
 		return inertia('Formulas/Create', compact(

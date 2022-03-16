@@ -24,14 +24,14 @@ class FormulaUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'indikasi'         => ['string'],
-            'kontraindikasi'   => ['string'],
+            'indikasi'         => ['nullable','string'],
+            'kontraindikasi'   => ['nullable','string'],
 			'fornas'           => ['required', 'integer'],
-            'efek_samping'     => ['string'],
+            'efek_samping'     => ['nullable','string'],
             'dijual_bebas'     => ['required', 'integer'],
             'sediaan_id'       => ['required', 'integer', 'gt:0'],
             'aturan_minum_id'  => ['string'],
-            'peringatan'       => ['string'],
+            'peringatan'       => ['nullable','string'],
             'boleh_dipuyer'    => ['required', 'integer'],
             'komposisis'       => ['nullable','array'],
             'golongan_obat_id' => ['integer', 'gt:0'],

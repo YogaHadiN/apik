@@ -116,6 +116,7 @@
 				<form @submit.prevent="submit">
 				  <div class="shadow sm:rounded-md sm:overflow-visible">
 					<div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+
 					  <div v-if="!formula" class="grid sm:grid-cols-3 gap-3">
 						<form-input
 						  label    = "merek"
@@ -139,6 +140,47 @@
 							</p>
 						</div>
 					  </div>
+						<form-input
+						  label    = "unit/paket"
+						  :colspan = "1"
+						  :message = "form.errors.unit_tiap_paket"
+						  v-model  = "form.unit_tiap_paket"
+						/>
+						<form-date
+						  label    = "exp_date"
+						  :message = "form.errors.exp_date"
+						  v-model  = "form.exp_date"
+						/>
+						<form-currency
+						  label    = "harga_beli"
+						  :message = "form.errors.harga_beli"
+						  v-model  = "form.harga_beli"
+						  :options = "{currency: 'IDR'}"
+						/>
+						<form-currency
+						  label    = "harga_jual"
+						  :message = "form.errors.harga_jual"
+						  v-model  = "form.harga_jual"
+						  :options = "{currency: 'IDR'}"
+						/>
+						<form-input
+						  label    = "stok_minimal"
+						  :message = "form.errors.stok_minimal"
+						  v-model  = "form.stok_minimal"
+						/>
+						<form-input
+						  label    = "stok"
+						  :message = "form.errors.stok"
+						  v-model  = "form.stok"
+						/>
+						<form-select
+						  label    = "kelas_obat_id"
+						  :message = "form.errors.kelas_obat_id"
+						  v-model  = "form.kelas_obat_id"
+						  :options = "kelas_obats"
+						/>
+					  </div>
+
 					<div class=" col-span-6 sm:col-span-6">
 					  <div class="flex flex-col">
 						<div class="-my-2 overflow-visible sm:-mx-6 lg:-mx-8 ">
@@ -172,6 +214,7 @@
 										:route="formula? '/formulas/' + formula.id + '/edit' : '/formulas/create'"
 										:options="generiks"
 										:index="index"
+										:value="formula? formula.komposisi[index].generik : ''"
 										@updateForm="updateFormGenerik"
 										ref="generik"
 									  />
@@ -229,46 +272,6 @@
 							</p>
 						</div>
 					</div>
-						<form-input
-						  label    = "unit/paket"
-						  :colspan = "1"
-						  :message = "form.errors.unit_tiap_paket"
-						  v-model  = "form.unit_tiap_paket"
-						/>
-						<form-date
-						  label    = "exp_date"
-						  :message = "form.errors.exp_date"
-						  v-model  = "form.exp_date"
-						/>
-						<form-currency
-						  label    = "harga_beli"
-						  :message = "form.errors.harga_beli"
-						  v-model  = "form.harga_beli"
-						  :options = "{currency: 'IDR'}"
-						/>
-						<form-currency
-						  label    = "harga_jual"
-						  :message = "form.errors.harga_jual"
-						  v-model  = "form.harga_jual"
-						  :options = "{currency: 'IDR'}"
-						/>
-						<form-input
-						  label    = "stok_minimal"
-						  :message = "form.errors.stok_minimal"
-						  v-model  = "form.stok_minimal"
-						/>
-						<form-input
-						  label    = "stok"
-						  :message = "form.errors.stok"
-						  v-model  = "form.stok"
-						/>
-						<form-select
-						  label    = "kelas_obat_id"
-						  :message = "form.errors.kelas_obat_id"
-						  v-model  = "form.kelas_obat_id"
-						  :options = "kelas_obats"
-						/>
-					  </div>
 					  <div class="grid grid-cols-3 gap-6">
 						<form-select
 						  label    = "fornas"
