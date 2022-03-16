@@ -216,9 +216,5 @@ class TarifController extends Controller
             'last_page',
             'tarifs'
         );
-
 	}
-	
-    
-	
 }
