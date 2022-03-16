@@ -6,7 +6,7 @@
 			<breadcrumb :lists="breadcrumb"/>
         </template>
         <template #headerRight>
-            <RedBreezeButton @click="destroy">
+            <RedBreezeButton v-if="tarif" @click="destroy">
                 Delete
             </RedBreezeButton>
         </template>
@@ -286,7 +286,7 @@ export default {
             route : '/tarifs',
 		  },
 		  {
-			label : 'Edit',
+            label : this.tarif? 'Edit' : 'Create',
 		  },
 		];
 		return bread;
