@@ -33,50 +33,50 @@
 									 v-model  = "form.nama"
 									 ref      = "asuransi"
 									 />
-										<form-textarea
-			  label    = "alamat"
-			  :message = "errors.alamat"
-			  v-model  = "form.alamat"
-			  />
-											<form-date
-			   label    = "tanggal_berakhir"
-			   :message = "errors.tanggal_berakhir"
-			   v-model  = "form.tanggal_berakhir"
-			   />
-												<form-textarea
-				label    = "alamat_penagihan"
-				:message = "errors.alamat_penagihan"
-				v-model  = "form.alamat_penagihan"
-				/>
-													<form-textarea
+								<form-textarea
+									  label    = "alamat"
+									  :message = "errors.alamat"
+									  v-model  = "form.alamat"
+								  />
+								<form-date
+								   label    = "tanggal_berakhir"
+								   :message = "errors.tanggal_berakhir"
+								   v-model  = "form.tanggal_berakhir"
+							   />
+								<form-textarea
+									label    = "alamat_penagihan"
+									:message = "errors.alamat_penagihan"
+									v-model  = "form.alamat_penagihan"
+									/>
+							<form-textarea
 				 label    = "catatan_pelayanan_gigi"
 				 :message = "errors.catatan_pelayanan_gigi"
 				 v-model  = "form.catatan_pelayanan_gigi"
 				 />
-														<form-select
+							<form-select
 				  label    = "tipe_asuransi_id"
 				  :message = "errors.tipe_asuransi_id"
 				  v-model  = "form.tipe_asuransi_id"
 				  :options = 'tipe_asuransis'
 				  />
-															<form-input
+							<form-input
 				   label    = "kali_obat"
 				   :message = "errors.kali_obat"
 				   @keypress="this.isNumber($event)"
 				   v-model  = "form.kali_obat"
 				   />
-																<form-input
+							<form-input
 					label    = "kata_kunci"
 					:message = "errors.kata_kunci"
 					v-model  = "form.kata_kunci"
 					/>
-																	<form-select
+							<form-select
 					 label    = "aktif"
 					 :message = "errors.aktif"
 					 v-model  = "form.aktif"
 					 :options="aktifs"
 					 />
-																		<form-select
+							<form-select
 					  label    = "pelunasan_transfer"
 					  :message = "errors.pelunasan_transfer"
 					  v-model  = "form.pelunasan_transfer"
@@ -100,20 +100,20 @@
 															<tr v-for="(phone, index) in form.phones" :key="index">
 																<td class="w-2/5 px-6 py-4 whitespace-nowrap">
 																	<form-input
-					 :message    = "errors.number"
-					 placeholder = "number"
-					 @input     = "phoneInput(index)"
-					 v-model     = "phone.number"
-					 ref         = 'phone_number'
-					 />
+																		 :message    = "errors.number"
+																		 placeholder = "number"
+																		 @input     = "phoneInput(index)"
+																		 v-model     = "phone.number"
+																		 ref         = 'phone_number'
+																		 />
 																</td>
 																<td class="w-2/5 px-6 py-4 whitespace-nowrap">
 																	<form-input
-					 :message    = "errors.description"
-					 placeholder = "description"
-					 @input      = "phoneInput(index)"
-					 v-model     = "phone.description"
-					 />
+															 :message    = "errors.description"
+															 placeholder = "description"
+															 @input      = "phoneInput(index)"
+															 v-model     = "phone.description"
+															 />
 																</td>
 																<td class="w-1/5 px-6 py-4 text-xs align-bottom whitespace-nowrap">
 																	<BreezeButton

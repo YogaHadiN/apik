@@ -163,58 +163,62 @@
 								</thead>
 								<tbody class="bg-white divide-y divide-gray-200">
 								  <tr v-for="(komposisi, index) in form.komposisis" :key="index">
-									  <td class="w-6/12 px-6 py-4 text-sm font-medium text-gray-500 whitespace-nowrap">
-									  {{ komposisi.generik }}
-									</td>
-									<td class="w-2/12 px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-									  {{ komposisi.bobot }}
-									</td>
-									<td class="w-3/12 px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-									  {{ komposisi.satuan }}
-									</td>
-									<td class="w-1/12 px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-									  <BreezeButton 
-										type="button" 
-										@click="deleteKomposisi(index)"
-									  >
-										<svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-										  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
-										</svg>
-									</BreezeButton>
-									</td>
-								  </tr>
-								</tbody>
-								<tfoot class="bg-white divide-y divide-gray-200 ">
-								  <tr>
 									  <td class="w-6/12 px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
 									<!-- Parent Component -->
+
 									  <form-select-async 
 										name="generik"
 										searchable_column="generik"
 										:route="formula? '/formulas/' + formula.id + '/edit' : '/formulas/create'"
 										:options="generiks"
+										:index="index"
 										@updateForm="updateFormGenerik"
 										ref="generik"
 									  />
 									</td>
 									<td class="w-2/12 px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-									  <FormInput v-model="bobot" @keypress="this.isNumber($event)"/>
+									  <FormInput v-model="komposisi.bobot" @keypress="this.isNumber($event)"/>
 									</td>
 									<td class="w-3/12 px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-									  <FormSelectObject v-model="satuan" :options="satuans" />
+									  <FormSelect v-model="komposisi.satuan_id" :options="satuans" />
 									</td>
 									<td class="w-1/12 px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-									  <BreezeButton
-										type="button" 
-										@click="addKomposisi(index)"
-									  >
-										<svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-										  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-										</svg>
-									  </BreezeButton >
+										<BreezeButton
+											type="button"
+											@click="remove(index)"
+											v-show="index || ( !index && form.komposisis.length > 1)"
+											class="mr-2"
+										>
+											<svg 
+												xmlns="http://www.w3.org/2000/svg" 
+												class="w-4 h-4 fill-current flex-no-shrink"
+												fill="none" 
+												viewBox="0 0 24 24" 
+												stroke="currentColor"
+											>
+												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />
+											</svg>
+										</BreezeButton>
+										<BreezeButton
+											v-show="index == form.komposisis.length-1"
+											type="button"
+											v-if="enable_add"
+											@click="add(index)"
+											:class="!index? 'w-full' : ''"
+										> 
+											<svg 
+											xmlns="http://www.w3.org/2000/svg" 
+											class="w-4 h-4 mx-auto fill-current flex-no-shrink"
+											fill="none" 
+											viewBox="0 0 24 24" 
+											stroke="currentColor"
+											>
+												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+											</svg>
+										</BreezeButton>
 									</td>
 								  </tr>
-								</tfoot>
+								</tbody>
 							  </table>
 							</div>
 						  </div>
@@ -369,18 +373,24 @@ export default {
           harga_jual: 0,
           stok_minimal: '',
           stok: '',
-          fornas:            this.formula ? this.formula.fornas : '',
-          kelas_obat_id:     this.formula ? this.formula.kelas_obat_id : '',
-          indikasi:          this.formula ? this.formula.indikasi : '',
-          kontraindikasi:    this.formula ? this.formula.kontraindikasi : '',
-          efek_samping:      this.formula ? this.formula.efek_samping : '',
-          dijual_bebas:      this.formula ? this.formula.dijual_bebas : '',
-          sediaan_id:        this.formula ? this.formula.sediaan_id : '',
-          aturan_minum_id:   this.formula ? this.formula.aturan_minum_id : '',
-          peringatan:        this.formula ? this.formula.peringatan : '',
-          boleh_dipuyer:     this.formula ? this.formula.boleh_dipuyer : '',
-          golongan_obat_id:  this.formula ? this.formula.golongan_obat_id : '',
-          komposisis:        this.formula ? this.formula.komposisis :[],
+          fornas:           this.formula ? this.formula.fornas : '',
+          kelas_obat_id:    this.formula ? this.formula.kelas_obat_id : '',
+          indikasi:         this.formula ? this.formula.indikasi : '',
+          kontraindikasi:   this.formula ? this.formula.kontraindikasi : '',
+          efek_samping:     this.formula ? this.formula.efek_samping : '',
+          dijual_bebas:     this.formula ? this.formula.dijual_bebas : '',
+          sediaan_id:       this.formula ? this.formula.sediaan_id : '',
+          aturan_minum_id:  this.formula ? this.formula.aturan_minum_id : '',
+          peringatan:       this.formula ? this.formula.peringatan : '',
+          boleh_dipuyer:    this.formula ? this.formula.boleh_dipuyer : '',
+          golongan_obat_id: this.formula ? this.formula.golongan_obat_id : '',
+		  komposisis:       this.formula && this.formula.komposisis.length ? this.formula.komposisis : [
+			  {   
+				  'generik_id' : '',
+				  'bobot' : '',
+				  'satuan_id' : ''
+			  },
+		  ],
           _method:           this.formula ? 'PUT' :'POST',
         })
       }
@@ -411,25 +421,33 @@ export default {
 		}
       },
       updateFormGenerik(obj){
-        this.generik  = obj;
+		  console.log('obj');
+		  console.log(obj);
+		  this.form.komposisis[obj.index][obj.name + '_id'] = obj.value;
       },
 	  updateForm(obj){
 		this.form.aturan_minum_id = obj.value
 	  },
-      addKomposisi(){
-        this.form.komposisis.push({
-          'generik_id': this.generik.value,
-          'generik':    this.generik.label,
-          'bobot':      this.bobot,
-          'satuan_id':  this.satuan.id,
-          'satuan':     this.satuan.text,
-        });
-        this.generik = '';
-        this.bobot   = '';
-        this.satuan  = '';
-		this.$refs.generik.focus()
-		this.$refs.generik.emptyValue()
-      },
+	  add(index) {
+		  if (
+			  this.form.komposisis[index].generik_id !== '' &&
+			  this.form.komposisis[index].satuan_id !== '' &&
+			  this.form.komposisis[index].bobot !== ''
+		  ) {
+			  this.form.komposisis.push({
+				  'generik_id' : '',
+				  'satuan_id' : '',
+				  'bobot' : ''
+			  })
+		  } else {
+			  alert('Harus lengkap dulu sebelum menambahkan');
+		  }
+	  },
+	  remove(k){
+		  console.log('remove');
+		  this.form.komposisis.splice(k, 1);
+	  },
+
       deleteKomposisi(index){
         this.form.komposisis.splice(index, 1);
       },
@@ -459,6 +477,18 @@ export default {
     mounted(){
     },
 	computed : {
+
+		enable_add(){
+			if (
+				this.form.komposisis[this.form.komposisis.length -1].generik_id !== '' &&
+				this.form.komposisis[this.form.komposisis.length -1].satuan_id !== '' &&
+				this.form.komposisis[this.form.komposisis.length -1].bobot !== ''
+			) {
+				return true
+			} else {
+				return false
+			}
+		},
 	  breadcrumb(){
 		let bread = [
 		  {
