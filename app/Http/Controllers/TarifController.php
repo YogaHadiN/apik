@@ -191,7 +191,7 @@ class TarifController extends Controller
         } else {
             $current_page = 1;
         }
-        $displayed_rows = 2;
+        $displayed_rows = 15;
         $query      = "SELECT ";
         $query     .= "trf.id as id, ";
         $query     .= "ttd.tipe_tindakan as tipe_tindakan, ";
